@@ -25,5 +25,7 @@ Route::resource('/productos','ProductoController');
 Route::get('/detalleProducto','DetalleProductoController@index');
 Route::post('/detalleProducto/compra','DetalleProductoController@storeCompra');
 Route::put('/detalleProducto/compra','DetalleProductoController@returnCompra');
+Route::post('/detalleProducto/venta','DetalleProductoController@storeVenta');
+Route::put('/detalleProducto/venta','DetalleProductoController@returnVenta');
 
 

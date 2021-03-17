@@ -12,6 +12,7 @@ $factory->define(Producto::class, function (Faker $faker) {
     $universo = ['MARVEL', 'MARVEL', 'MARVEL', 'MARVEL', 'DC-COMICS', 'DC-COMICS', 'DC-COMICS'];
     $color = ['ROJO', 'VERDE', 'AZUL', 'PURPURA', 'GRIS', 'AMARILLO', 'NEGRO',];
     $articulo = ['SUETER', 'VASO', 'COMIC', 'FIGURA_ACCION', 'GANCHO', 'CINTURON', 'MOVIL'];
+    $tipoUnidad = ['Unidad', 'Kilogramos', 'Docena'];
 
     $id = $faker->numberBetween(0, 6);
 
@@ -23,7 +24,7 @@ $factory->define(Producto::class, function (Faker $faker) {
         'localizacion' => $faker->numerify('BODEGA ## ESTANTE ##'),
         'minimo' => $faker->numberBetween(10, 20),
         'maximo' => $faker->numberBetween(60, 99),
-        'tipo_unidad' => $faker->randomDigit,
+        'tipo_unidad' => $tipoUnidad[$faker->numberBetween(0,2)],
         'id_proveedor' => $faker->numberBetween(1, 10),
     ];
 });

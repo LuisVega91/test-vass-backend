@@ -25,9 +25,9 @@ class DetalleProductoRequest extends FormRequest
     {
         return [
             "descripcion" => "required|string",
-            "valor_unitario" => "required|numeric",
-            "cantidad" => "required|numeric",
-            "id_producto" => "required|numeric",
+            "valor_unitario" => "required|numeric|min:1",
+            "cantidad" => "required|numeric|min:1",
+            "id_producto" => "required|numeric|min:1",
         ];
     }
 }

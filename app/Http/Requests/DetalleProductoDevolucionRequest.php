@@ -24,7 +24,7 @@ class DetalleProductoDevolucionRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|numeric',
+            'id' => 'required|numeric|min:1',
             'descripcion' => 'required|string',
         ];
     }

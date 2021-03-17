@@ -16,7 +16,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::with('detalle')->orderBy('created_at', 'desc')->get();
         return $this->successResponse($productos, 200);
     }
 
@@ -29,8 +29,13 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $producto = Producto::create([
-            "nombre" => $request->nombre,
-            "valor" => $request->valor,
+            "articulo" => $request->articulo,
+            "referencia" => $request->referencia,
+            "localizacion" => $request->localizacion,
+            "tipo_unidad" => $request->tipo_unidad,
+            "minimo" => $request->minimo,
+            "maximo" => $request->maximo,
+            "id_proveedor" => $request->id_proveedor,
         ]);
         return $this->successResponse($producto, 201);
     }
@@ -56,8 +61,13 @@ class ProductoController extends Controller
     public function update(Request $request, Producto $producto)
     {
         $producto->update([
-            "nombre" => $request->nombre,
-            "valor" => $request->valor
+            "articulo" => $request->articulo,
+            "referencia" => $request->referencia,
+            "localizacion" => $request->localizacion,
+            "tipo_unidad" => $request->tipo_unidad,
+            "minimo" => $request->minimo,
+            "maximo" => $request->maximo,
+            "id_proveedor" => $request->id_proveedor,
         ]);
         return $this->successResponse($producto, 200);
     }
