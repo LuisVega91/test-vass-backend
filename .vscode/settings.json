@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "test-u2software-database",
+            "database": "${workspaceFolder:test-u2software-backend}/database/database.sqlite",
+            "group": "test-u2software-database"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
