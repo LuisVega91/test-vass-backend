@@ -19,8 +19,7 @@ class DetalleProductoController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
-            $detalleProductos = DetalleProducto::orderBy('created_at', 'desc')
-                ->get();
+            $detalleProductos = [];
         }
         return $this->successResponse($detalleProductos, 200);
     }
@@ -51,16 +50,16 @@ class DetalleProductoController extends Controller
     {
         $devolucion = DetalleProducto::where('id', $request->id)->first();
         if ($devolucion->entrada_cantidad == null) {
-            return $this->errorResponse("El movimiento no es una compra", 404);
+            return $this->errorResponse("El movimiento no es una compra", 201);
         }
         if ($devolucion->devuelto == true) {
-            return $this->errorResponse("El movimiento ya fue revertido anteriormente", 404);
+            return $this->errorResponse("El movimiento ya fue revertido anteriormente", 201);
         }
         $saldoActual = DetalleProducto::where('id_producto', $devolucion->id_producto)
             ->orderBy('created_at', 'desc')
             ->first();
         if ($saldoActual->saldo_cantidad < $devolucion['entrada_cantidad']) {
-            return $this->errorResponse("No hay suficientes unidades para la devolucion", 404);
+            return $this->errorResponse("No hay suficientes unidades para la devolucion", 201);
         }
         $saldoCantidad = $saldoActual['saldo_cantidad'] - $devolucion['entrada_cantidad'];
         $saldoValor =  $saldoActual['saldo_valor'] - $devolucion['entrada_valor'];
@@ -107,10 +106,10 @@ class DetalleProductoController extends Controller
     {
         $devolucion = DetalleProducto::where('id', $request->id)->first();
         if ($devolucion->salida_cantidad == null) {
-            return $this->errorResponse("El movimiento no es una venta", 404);
+            return $this->errorResponse("El movimiento no es una venta", 201);
         }
         if ($devolucion->devuelto == true) {
-            return $this->errorResponse("El movimiento ya fue revertido anteriormente", 404);
+            return $this->errorResponse("El movimiento ya fue revertido anteriormente", 201);
         }
         $saldoActual = DetalleProducto::where('id_producto', $devolucion->id_producto)
             ->orderBy('created_at', 'desc')

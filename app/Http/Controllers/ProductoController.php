@@ -46,8 +46,9 @@ class ProductoController extends Controller
      * @param  \App\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($producto)
     {
+        $producto = Producto::with('detalle')->where('id', $producto)->first();
         return $this->successResponse($producto, 200);
     }
 

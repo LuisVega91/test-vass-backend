@@ -24,10 +24,10 @@ class DetalleProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            "descripcion" => "required|string",
-            "valor_unitario" => "required|numeric|min:1",
-            "cantidad" => "required|numeric|min:1",
             "id_producto" => "required|numeric|min:1",
+            "cantidad" => "required|numeric|min:1",
+            "valor_unitario" => "required|numeric|min:1",
+            "descripcion" => "required|string",
         ];
     }
 }
